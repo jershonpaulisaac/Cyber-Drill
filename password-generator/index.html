@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Advanced Password Generator - Cipher Shield</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Advanced Password Generator 🔐</h1>
+
+    <form id="passwordForm" class="generator" onsubmit="return false;">
+      <label for="numbers">Enter Numbers (comma separated):</label>
+      <input type="text" id="numbers" placeholder="e.g. 5,03,2006 etc..." />
+
+      <label for="words">Enter Words, Initials (comma separated & both lowercase and uppercase):</label>
+      <input type="text" id="words" placeholder="e.g. your name, surname, Initial, place, things etc...." />
+
+      <label for="letters">Enter Symbols (comma separated):</label>
+      <input type="text" id="letters" placeholder="e.g. @,#,$,&,#" />
+
+      <label for="difficulty">Select Difficulty Level:</label>
+      <select id="difficulty" required>
+        <option value="low">Low (short, simple)</option>
+        <option value="medium" selected>Medium (balanced)</option>
+        <option value="high">High (complex, longer)</option>
+      </select>
+
+      <button id="generateBtn" type="submit">Generate Password</button>
+
+      <div class="output" style="margin-top: 1.5rem;">
+        <label for="result">Generated Password:</label>
+        <textarea
+          id="result"
+          readonly
+          rows="3"
+          placeholder="Your generated password will appear here"
+        ></textarea>
+        <button id="copyBtn" title="Copy to clipboard" type="button">📋 Copy</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

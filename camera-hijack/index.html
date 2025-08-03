@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Camera Hijack Simulator - Cipher Shield</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Camera Hijack Simulator (Ethical Demo)</h1>
+  <p>This demo simulates a malicious site requesting webcam access and an attacker viewing the stream.</p>
+
+  <div class="container">
+    <div class="panel" id="victimPanel">
+      <h2>🧍‍♂️ Victim Screen</h2>
+      <button id="allowCamBtn">Click to Allow Camera Access</button>
+      <video id="victimVideo" autoplay muted playsinline style="display:none;"></video>
+      <div id="victimFakeSite" style="display:none; margin-top: 15px; color:#0f0; background:#111; padding:15px; border-radius:8px; font-family: monospace;">
+        <p>unfortunately your camera access is denied </p>
+        <p><em>Stay on this page till you receive another request or click below link to retry</em></p>
+        <a href="fake_login.html" target="_blank">Click here</a>
+      </div>
+      <p id="victimStatus">Camera not accessed yet.</p>
+    </div>
+
+    <div class="panel" id="hackerPanel">
+      <h2>🕵️ Hacker Screen</h2>
+      <video id="hackerVideo" autoplay muted playsinline></video>
+      <p id="hackerStatus">Waiting for victim's camera...</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

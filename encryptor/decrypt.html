@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Decryptor - Cipher Shield</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🔓 Decryptor</h1>
+    <form onsubmit="event.preventDefault(); decrypt();">
+  <textarea id="decodeInput" placeholder="Enter cipher text here..." required></textarea>
+  <button type="submit">Decrypt</button>
+  <textarea id="decryptedText" readonly placeholder="Plain text..."></textarea>
+  <button type="button" onclick="copyToClipboard('decryptedText')">📋 Copy</button>
+</form>
+
+    <a href="home.html">🔙 Back to Home</a>
+  </div>
+
+
+  <script>
+  function copyToClipboard(id) {
+    const textArea = document.getElementById(id);
+    textArea.select();
+    textArea.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    alert("Copied to clipboard!");
+  }
+</script>
+<script src="script.js"></script>
+
+</body>
+</html>

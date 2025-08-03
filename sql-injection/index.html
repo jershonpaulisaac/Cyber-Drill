@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SQL Injection Explainer & Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container" id="explainer">
+    <h1>What is SQL Injection?</h1>
+    <p>
+      SQL Injection is a type of security vulnerability that allows an attacker to interfere with the queries
+      that an application makes to its database.
+    </p>
+    <p>
+      It happens when user inputs are inserted directly into SQL statements without proper validation or escaping.
+      This allows attackers to inject malicious SQL code that can manipulate or bypass database queries.
+    </p>
+    <p>
+      For example, in a login form, an attacker might input special characters that change the meaning of the
+      database query and gain unauthorized access.
+    </p>
+    <p>
+      Click the button below to try a simulated SQL Injection attack on an insecure login form!
+    </p>
+    <button id="tryBtn">Try It</button>
+  </div>
+
+  <div class="container" id="simulator" style="display:none;">
+    <h1>SQL Injection Simulator</h1>
+    
+    <form id="loginForm" autocomplete="off">
+      <label for="username">Username:</label>
+      <input type="text" id="username" placeholder="Enter username" required />
+      
+      <label for="password">Password:</label>
+      <input type="password" id="password" placeholder="Enter password" required />
+      
+      <button type="submit">Login</button>
+    </form>
+    
+    <div id="result" class="result" style="display:none;"></div>
+    <div id="query" class="query" style="display:none;"></div>
+    
+    <button class="back-btn" id="backBtn">Back to Explanation</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

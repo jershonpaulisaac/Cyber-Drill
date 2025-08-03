@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Network Security Demo</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="container">
+  <h1>🔐 Network Security Demo</h1>
+  <p>
+    This demo simulates a simple network with devices and a firewall that controls incoming traffic.
+  </p>
+
+  <div class="network-diagram" id="networkDiagram">
+    <div class="device" id="internet" title="Internet">🌐 Internet</div>
+    <div class="firewall" title="Firewall">🔥 Firewall</div>
+    <div class="device" id="server" title="Secure Server">🖥️ Server</div>
+    <div class="device" id="workstation" title="Workstation">💻 Workstation</div>
+  </div>
+
+  <div class="controls">
+    <label for="packetSource">Select packet source:</label>
+    <select id="packetSource">
+      <option value="internet">🌐 Internet</option>
+      <option value="workstation">💻 Workstation</option>
+      <option value="server">🖥️ Server</option>
+    </select>
+
+    <label for="packetType">Select packet type:</label>
+    <select id="packetType">
+      <option value="allowed">Allowed Packet</option>
+      <option value="blocked">Blocked Packet</option>
+    </select>
+
+    <button id="sendPacketBtn">Send Packet</button>
+  </div>
+
+  <div class="log" id="logArea">
+    <h2>Firewall Log</h2>
+    <ul id="logList"></ul>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

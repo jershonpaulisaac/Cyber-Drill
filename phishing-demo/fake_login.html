@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Amazon Sign-In (Demo) - Cipher Shield</title>
+    <style>
+      .amazon-box {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 30px;
+        background: #fff;
+        color: #111;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-family: Arial, sans-serif;
+      }
+
+      .amazon-logo {
+        display: block;
+        margin: 0 auto 20px auto;
+        width: 150px;
+      }
+
+      .amazon-box h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .amazon-box input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #888;
+        border-radius: 4px;
+      }
+
+      .amazon-box button {
+        background-color: #f0c14b;
+        border: 1px solid #a88734;
+        color: #111;
+        padding: 10px;
+        width: 100%;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .breach-alert {
+        display: none;
+        margin-top: 15px;
+        color: red;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .disclaimer {
+        font-size: 15px;
+        text-align: left;
+        margin-top: 20px;
+        color: #555;
+      }
+      .sign-in {
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="amazon-box">
+      <img src="amazon.png" alt="Amazon" class="amazon-logo" />
+      <h1 id="sign-in">Sign-In</h1>
+      <form id="phishingForm">
+        <label for="email">Email or mobile phone number</label>
+        <input type="text" id="email" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" required />
+
+        <button type="submit">Sign-In</button>
+      </form>
+
+      <div class="disclaimer">
+        By continuing, you agree to Amazon's
+        <a
+          href="https://www.amazon.com/gp/help/customer/display.html/ref=ap_signin_notification_condition_of_use?ie=UTF8&nodeId=508088"
+        >
+          Conditions of Use</a
+        >
+        and
+        <a
+          href="https://www.amazon.com/gp/help/customer/display.html/ref=ap_signin_notification_privacy_notice?ie=UTF8&nodeId=468496"
+          >Privacy Notice</a
+        ><br><br>
+        <a
+        href="https://www.amazon.com/gp/help/customer/account-issues/ref=unified_claim_collection?ie=UTF8" 
+        >Need help ?</a
+      >
+      </div>
+    </div>
+  <script src="script.js"></script>
+
+
+  </body>
+</html>

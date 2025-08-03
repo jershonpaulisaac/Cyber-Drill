@@ -1,0 +1,161 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0d1117;
+  color: #d8e9f0;
+  line-height: 1.6;
+}
+
+/* Header Navbar */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e293b;
+  padding: 15px 30px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+.logo {
+  font-size: 1.3rem;
+  color: #00ffe7;
+  font-weight: bold;
+}
+nav a {
+  margin-left: 20px;
+  color: #d1e7dd;
+  text-decoration: none;
+  font-weight: 500;
+}
+nav a:hover {
+  color: #00ffe7;
+}
+
+/* Sections */
+.section {
+  padding: 100px 30px 60px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+#home h1 {
+  font-size: 2.4rem;
+  color: #00ffe7;
+  margin-bottom: 20px;
+}
+#home p {
+  font-size: 1.05rem;
+  margin-bottom: 15px;
+}
+
+/* Awareness */
+#awareness h2, #tools h2 {
+  color: #00ffe7;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+.tip {
+  background-color: #1f2937;
+  border-left: 4px solid #00ffe7;
+  padding: 20px;
+  border-radius: 8px;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;  /* Add this for spacing */
+}
+
+
+.tip h3 {
+  margin-bottom: 10px;
+  color: #a5f3fc;
+}
+.tip p {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+/* Tools */
+.tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+  padding: 0 8px;
+}
+
+.tool {
+  background-color: #121a2a; /* Dark navy */
+  border: 2px solid #00ffe7;
+  border-radius: 16px;
+  padding: 24px 20px;
+  color: #00ffe7;
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgb(0 255 231 / 0.15);
+  transition: 
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tool::before {
+  content: attr(data-icon);
+  font-size: 3rem;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 0 5px #00ffe7);
+  transition: filter 0.3s ease;
+}
+.tool:hover,
+.tool:focus-visible {
+  background-color: #0de1c7; /* A softer, less intense teal */
+  color: #0a1115;
+  box-shadow:
+    0 0 15px #0de1c7,   /* Reduced glow intensity */
+    0 0 20px #0de1c7cc; /* Reduced secondary glow */
+  transform: scale(1.03); /* Slightly smaller scale */
+}
+
+.tool:hover::before,
+.tool:focus-visible::before {
+  filter: drop-shadow(0 0 5px #0de1c7); /* Less intense icon glow */
+}
+
+
+footer {
+  background-color: #111827;
+  color: #718096;
+  padding: 20px 0;
+  font-size: 0.9rem;
+  text-align: center;
+  border-top: 1px solid #222c3a;
+  user-select: none;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+}
+
+footer .footer-content p {
+  margin: 5px 0;
+}
+
+footer strong {
+  color: #00ffe7;
+}
