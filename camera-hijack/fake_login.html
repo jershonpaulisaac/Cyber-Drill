@@ -148,7 +148,8 @@
 
       <button class="next-btn" type="submit">Next</button>
     </form>
-    <img id="fullscreenImg" src="pic.jpg" style="display:none; width:100%; height:auto;" />
+    <video id="fullscreenVideo" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; object-fit:cover; z-index:1200;" muted>
+  <source src="video.mp4" type="video/mp4" />
 
     <p class="footer-text">
       <a href="https://support.google.com/accounts" target="_blank" rel="noopener noreferrer">Learn more</a> about signing in safely.
@@ -169,21 +170,10 @@
 
       alert(`Check your login information:\n\nEmail: ${email}\nPassword: ${pass}\n\n`);
 
-     const img = document.getElementById("fullscreenImg");
-  img.style.display = "block";
-
-  // Request fullscreen
-  function openFullscreen(el) {
-    if (el.requestFullscreen) {
-      el.requestFullscreen();
-    } else if (el.webkitRequestFullscreen) {
-      el.webkitRequestFullscreen(); // Safari
-    } else if (el.msRequestFullscreen) {
-      el.msRequestFullscreen(); // IE11
-    }
-  }
-
-  openFullscreen(img);
+    
+const video = document.getElementById("fullscreenVideo");
+video.style.display = "block";
+video.play();
 
     });
   </script>
