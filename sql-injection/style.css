@@ -7,33 +7,37 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px; /* Ensures content isn't touching screen edges on mobile */
+  box-sizing: border-box;
 }
 
 .container {
   background: #222;
   border-radius: 12px;
-  width: 400px;
-  max-width: 95vw;
-  padding: 30px 40px;
+  width: 100%;
+  max-width: 400px;
+  padding: 30px 20px;
   box-shadow: 0 0 15px #0ff;
+  box-sizing: border-box;
 }
 
 h1 {
   color: #0ff;
   text-align: center;
   margin-bottom: 20px;
+  font-size: 1.8rem;
 }
 
 p {
   line-height: 1.5;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 button {
   margin-top: 25px;
   width: 100%;
   padding: 14px;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 700;
   border-radius: 8px;
   border: none;
@@ -53,7 +57,7 @@ label {
   display: block;
   margin-top: 15px;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 input[type="text"],
@@ -64,14 +68,15 @@ input[type="password"] {
   border-radius: 6px;
   border: none;
   outline: none;
-  font-size: 16px;
+  font-size: 1rem;
+  box-sizing: border-box;
 }
 
 .result {
   margin-top: 20px;
   padding: 15px;
   border-radius: 8px;
-  font-size: 18px;
+  font-size: 1.1rem;
   font-weight: 700;
   text-align: center;
 }
@@ -93,7 +98,7 @@ input[type="password"] {
   padding: 10px;
   margin-top: 20px;
   font-family: monospace;
-  font-size: 14px;
+  font-size: 0.9rem;
   color: #0ff;
   border-radius: 8px;
   white-space: pre-wrap;
@@ -108,4 +113,19 @@ input[type="password"] {
 
 .back-btn:hover {
   background: #777;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p, label, input, .result, .query, button {
+    font-size: 0.95rem;
+  }
+
+  .container {
+    padding: 20px 15px;
+  }
 }

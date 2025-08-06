@@ -25,6 +25,7 @@ h1 {
   width: 45%;
   min-width: 320px;
   box-shadow: 0 0 15px #00ffffaa;
+  margin: 10px;
 }
 
 video {
@@ -55,4 +56,36 @@ p {
   margin-top: 10px;
   font-style: italic;
   color: #aaa;
+}
+
+/* ✅ Mobile Responsive Styles */
+@media screen and (max-width: 480px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .panel {
+    width: 100%;
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  video {
+    height: auto;
+  }
+
+  button {
+    width: 100%;
+    font-size: 15px;
+    padding: 10px 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
 }

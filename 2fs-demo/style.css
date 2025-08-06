@@ -2,15 +2,15 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #121417;  /* Dark background */
-  color: #e0e0e0;             /* Soft light gray text */
+  background-color: #121417;
+  color: #e0e0e0;
   padding: 30px;
 }
 
 .page {
   max-width: 600px;
   margin: auto;
-  background-color: #1e2228; /* Dark container */
+  background-color: #1e2228;
   padding: 30px 40px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.7);
@@ -18,7 +18,7 @@ body {
 }
 
 h1, h2 {
-  color: #4db6ac; /* Calm teal */
+  color: #4db6ac;
   margin-bottom: 15px;
   font-weight: 600;
 }
@@ -26,12 +26,12 @@ h1, h2 {
 ul, ol {
   padding-left: 20px;
   margin-bottom: 20px;
-  color: #a5d6a7; /* Soft green */
+  color: #a5d6a7;
 }
 
 button {
   padding: 12px 25px;
-  background-color: #4db6ac; /* Teal */
+  background-color: #4db6ac;
   color: #121417;
   border: none;
   border-radius: 6px;
@@ -42,18 +42,19 @@ button {
 }
 
 button:hover {
-  background-color: #399786; /* Darker teal */
+  background-color: #399786;
   color: #e0e0e0;
 }
 
-.login-box, .otp-box {
-  background-color: #2c313a; /* Dark gray */
+.login-box,
+.otp-box {
+  background-color: #2c313a;
   padding: 40px;
   width: 350px;
   border-radius: 8px;
   text-align: center;
   margin: 20px auto 0;
-  color: #d0d7de; /* Light gray */
+  color: #d0d7de;
   border: 1px solid #444c56;
 }
 
@@ -87,4 +88,41 @@ input:focus {
   font-size: 1.1rem;
   color: #4db6ac;
   user-select: none;
+}
+
+/* ✅ Responsive Design for Mobile */
+@media screen and (max-width: 480px) {
+  body {
+    padding: 15px;
+  }
+
+  .page {
+    padding: 20px;
+  }
+
+  .login-box,
+  .otp-box {
+    width: 100%;
+    padding: 25px;
+    margin-top: 15px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+
+  input {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  h1, h2 {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .message-box {
+    font-size: 1rem;
+  }
 }

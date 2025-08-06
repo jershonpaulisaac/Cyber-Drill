@@ -6,39 +6,65 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 20px; /* Added padding for smaller screens */
+  box-sizing: border-box;
 }
 
 .container {
   text-align: center;
+  width: 100%;
   max-width: 600px;
-  padding: 40px;
+  padding: 30px 20px;
   background-color: #1e293b;
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
 }
 
 h1 {
-  font-size: 2.2rem;
+  font-size: 2rem;
   color: #38bdf8;
 }
 
 p {
-  font-size: 1.1rem;
-  margin: 20px 0;
+  font-size: 1rem;
+  margin: 16px 0;
 }
 
 button {
   background-color: #0ea5e9;
   color: white;
   border: none;
-  padding: 14px 30px;
-  font-size: 16px;
+  padding: 12px 24px;
+  font-size: 15px;
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.3s;
+  width: 100%; /* Full-width on mobile */
+  max-width: 300px; /* Optional: limit width on larger screens */
 }
 
 button:hover {
   background-color: #0284c7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  .container {
+    padding: 20px 15px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 12px 20px;
+  }
 }

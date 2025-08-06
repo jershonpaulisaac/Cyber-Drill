@@ -166,3 +166,62 @@ button:hover {
 .packet.blocked {
   color: #e07a5f;
 }
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+
+  .network-diagram {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 0 10px;
+  }
+
+  .device,
+  .firewall {
+    width: 100px;
+    height: 100px;
+    font-size: 14px;
+  }
+
+  .device span.emoji,
+  .firewall span.emoji {
+    font-size: 30px;
+    margin-bottom: 5px;
+  }
+
+  .controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  select,
+  button {
+    width: 100%;
+    min-width: unset;
+    font-size: 1rem;
+  }
+
+  .log {
+    font-size: 0.85rem;
+    padding: 15px;
+    height: 150px;
+  }
+
+  .log h2 {
+    font-size: 1.2rem;
+  }
+
+  .packet {
+    font-size: 20px;
+  }
+}

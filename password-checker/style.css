@@ -7,19 +7,23 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .container {
   background: #1e1e1e;
-  padding: 25px 30px;
+  padding: 25px 20px;
   border-radius: 10px;
-  width: 350px;
+  width: 100%;
+  max-width: 380px;
   box-shadow: 0 0 15px #00c6ffaa;
   text-align: center;
 }
 
 h2 {
   margin-bottom: 20px;
+  font-size: 1.5em;
 }
 
 .password-label {
@@ -29,15 +33,17 @@ h2 {
   font-weight: 600;
   font-size: 14px;
 }
+
 .input-wrapper {
   display: flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 .input-wrapper input {
-  flex: 1;
+  flex: 1 1 100%;
   padding: 12px 15px;
   font-size: 16px;
   border-radius: 6px;
@@ -45,6 +51,7 @@ h2 {
   background: #222;
   color: #eee;
   outline: none;
+  box-sizing: border-box;
 }
 
 .input-wrapper input:focus {
@@ -52,12 +59,14 @@ h2 {
 }
 
 .input-wrapper button {
+  margin-top: 10px;
+  width: 100%;
   background: #333;
   border: none;
   color: #ccc;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
-  padding: 10px 12px;
+  padding: 10px;
   border-radius: 6px;
   transition: background 0.3s, color 0.3s;
 }
@@ -66,8 +75,6 @@ h2 {
   background: #00c6ff;
   color: #121212;
 }
-
-
 
 #strength-text {
   margin-top: 15px;
@@ -114,4 +121,25 @@ h2 {
 .criteria-list li.valid::before {
   content: "✓";
   color: #4caf50;
+}
+
+/* --- Mobile Specific Styles --- */
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.3em;
+  }
+
+  .container {
+    padding: 20px 15px;
+  }
+
+  .input-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-wrapper input,
+  .input-wrapper button {
+    width: 100%;
+  }
 }
