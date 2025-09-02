@@ -7,8 +7,6 @@ const modal = document.getElementById("agreementModal");
 const proceedBtn = document.getElementById("proceedBtn");
 const agreeCheck = document.getElementById("agreeCheck");
 const freezeOverlay = document.getElementById("freezeOverlay");
-const beep = document.getElementById("beep");
-const fullscreenVideo = document.getElementById("fullscreenVideo");
 
 // Show disclaimer modal
 startBtn.addEventListener("click", () => {
@@ -27,12 +25,10 @@ proceedBtn.addEventListener("click", () => {
   document.querySelector(".main-content").style.display = "none";
   simulation.style.display = "flex";
 
-  // Initially show glitch text, hide spinner, blackout, and video
   glitchText.style.display = "block";
   glitchText.textContent = "Connecting to the Onion Network...";
   spinnerContainer.style.display = "none";
   blackout.style.display = "none";
-  fullscreenVideo.style.display = "none";
 
   // Show glitch text for 5 seconds
   setTimeout(() => {
@@ -51,49 +47,28 @@ proceedBtn.addEventListener("click", () => {
         "Press OK to acknowledge and continue."
       );
 
-      // Show spinner AFTER alert is closed
       blackout.style.display = "none";
       spinnerContainer.style.display = "flex";
 
-      // Show spinner for 3 seconds
+      // Spinner for 3 seconds
       setTimeout(() => {
         spinnerContainer.style.display = "none";
 
-        // Show and play the fullscreen video in full screen
-        fullscreenVideo.style.display = "block";
-
-        // Request fullscreen
-        if (fullscreenVideo.requestFullscreen) {
-          fullscreenVideo.requestFullscreen();
-        } else if (fullscreenVideo.webkitRequestFullscreen) {
-          fullscreenVideo.webkitRequestFullscreen(); // Safari
-        } else if (fullscreenVideo.msRequestFullscreen) {
-          fullscreenVideo.msRequestFullscreen(); // IE11
-        }
-
-        // Play the video
-        fullscreenVideo.play();
-
-        // When video ends, hide it and start chaos simulation
-        fullscreenVideo.onended = () => {
-          fullscreenVideo.style.display = "none";
-          startUncontrolledSimulation();
-        };
+        // Redirect to dark web replica page
+        window.location.href = "dark_web_replica.html"; // <-- Replace with your replica URL
       }, 3000);
+
     }, 1000);
   }, 5000);
 });
 
-// Chaos simulation function
+// Chaos simulation function (optional, runs before redirect)
 function startUncontrolledSimulation() {
   let counter = 0;
-
   const interval = setInterval(() => {
-    // Flicker background and text
-    document.body.style.backgroundColor = counter % 2 === 0 ? "#000" : "#fff";
-    document.body.style.color = counter % 2 === 0 ? "#fff" : "#000";
+    document.body.style.backgroundColor = counter % 2 === 0 ? "#000" : "#111";
+    document.body.style.color = counter % 2 === 0 ? "#00ffcc" : "#ff003c";
 
-    // Create random warning text
     const text = document.createElement("div");
     text.className = "chaos-text";
     text.textContent = "⚠ SYSTEM BREACH ⚠";
@@ -104,32 +79,12 @@ function startUncontrolledSimulation() {
     text.style.fontFamily = "Orbitron, monospace";
     document.body.appendChild(text);
 
-    // Remove text after 2s
     setTimeout(() => {
-      if (text.parentElement) {
-        text.parentElement.removeChild(text);
-      }
+      if (text.parentElement) text.parentElement.removeChild(text);
     }, 2000);
 
-    // Play beep
-    if (beep) {
-      beep.currentTime = 0;
-      beep.play().catch(() => {});
-    }
-
     counter++;
-    if (counter > 50) {
-      clearInterval(interval);
-      document.body.style.backgroundColor = "#0a0f1a";
-      document.body.style.color = "#00ffcc";
-      document.body.style.transform = "none";
-
-      // Clean up
-      document.querySelectorAll('.chaos-text').forEach(el => el.remove());
-
-      // Optionally reload
-      // location.reload();
-    }
+    if (counter > 50) clearInterval(interval);
   }, 150);
 }
 
@@ -137,8 +92,22 @@ function startUncontrolledSimulation() {
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
 function getRandomColor() {
   const letters = '0123456789ABCDEF';
   return '#' + Array.from({ length: 6 }, () => letters[Math.floor(Math.random() * 16)]).join('');
 }
+
+// Disable right click
+document.addEventListener("contextmenu", e => e.preventDefault());
+// Disable text selection & copy
+document.addEventListener("selectstart", e => e.preventDefault());
+document.addEventListener("copy", e => e.preventDefault());
+document.addEventListener("cut", e => e.preventDefault());
+// Disable certain key combos
+document.onkeydown = function (e) {
+  if (e.keyCode == 123) return false; // F12
+  if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) return false; // Ctrl+Shift+I/J
+  if (e.ctrlKey && e.keyCode == 85) return false; // Ctrl+U
+  if (e.ctrlKey && e.keyCode == 67) return false; // Ctrl+C
+  if (e.ctrlKey && e.keyCode == 83) return false; // Ctrl+S
+};

@@ -1,35 +1,215 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Camera Hijack Simulator - Cyber Drill</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0ff;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    p.subtitle {
+      text-align: center;
+      color: #8b98a5;
+      margin-bottom: 40px;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .panel {
+      background: #161b22;
+      padding: 25px;
+      border-radius: 15px;
+      flex: 1 1 400px;
+      max-width: 450px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    }
+
+    button {
+      padding: 12px 25px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      color: #0d1117;
+      background: #0ff;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #00d4ff;
+      transform: scale(1.05);
+    }
+
+    video {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 15px;
+      border: 2px solid #0ff;
+    }
+
+    #victimFakeSite {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      background: #1f242b;
+      color: #ff5555;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .scanner {
+      position: relative;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #8b98a5;
+    }
+  </style>
 </head>
 <body>
-  <h1>Camera Hijack Simulator (Ethical Demo)</h1>
-  <p>This demo simulates a malicious site requesting webcam access and an attacker viewing the stream.</p>
 
-  <div class="container">
-    <div class="panel" id="victimPanel">
-      <h2>🧍‍♂️ Victim Screen</h2>
-      <button id="allowCamBtn">Click to Allow Camera Access</button>
-      <video id="victimVideo" autoplay muted playsinline style="display:none;"></video>
-      <div id="victimFakeSite" style="display:none; margin-top: 15px; color:#0f0; background:#111; padding:15px; border-radius:8px; font-family: monospace;">
-        <p>unfortunately your camera access is denied </p>
-        <p><em>Stay on this page till you receive another request or click below link to retry</em></p>
-        <a href="fake_login.html" target="_blank">Click here</a>
-      </div>
-      <p id="victimStatus">Camera not accessed yet.</p>
-    </div>
+<h1>Camera Hijack Simulator</h1>
+<p class="subtitle">Victim sees technical issue while hacker sees live feed with facial scan</p>
 
-    <div class="panel" id="hackerPanel">
-      <h2>🕵️ Hacker Screen</h2>
-      <video id="hackerVideo" autoplay muted playsinline></video>
-      <p id="hackerStatus">Waiting for victim's camera...</p>
+<div class="container">
+
+  <!-- Victim Panel -->
+  <div class="panel" id="victimPanel">
+    <h2>🧍‍♂️ Victim Screen</h2>
+    <button id="allowCamBtn">Grant Camera Access</button>
+    <video id="victimVideo" autoplay muted playsinline style="display:none;"></video>
+    <div id="victimFakeSite">
+      Technical issue detected.<br>
+      Camera access not available at the moment.
     </div>
+    <p id="victimStatus"></p>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Hacker Panel -->
+  <div class="panel" id="hackerPanel">
+    <h2>🕵️ Hacker Screen</h2>
+    <div class="scanner">
+      <video id="hackerVideo" autoplay playsinline></video>
+      <canvas id="gridOverlay"></canvas>
+    </div>
+    <p class="status">🔍 Scanning victim's face...</p>
+  </div>
+
+</div>
+
+<script>
+const allowCamBtn = document.getElementById('allowCamBtn');
+const victimVideo = document.getElementById('victimVideo');
+const victimFakeSite = document.getElementById('victimFakeSite');
+const hackerVideo = document.getElementById('hackerVideo');
+const canvas = document.getElementById('gridOverlay');
+const ctx = canvas.getContext('2d');
+
+// Function to resize canvas
+function resizeCanvas() {
+  canvas.width = hackerVideo.clientWidth;
+  canvas.height = hackerVideo.clientHeight;
+}
+window.addEventListener("resize", resizeCanvas);
+hackerVideo.addEventListener("loadedmetadata", resizeCanvas);
+
+// Draw scanning grid overlay
+function drawGrid() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = "rgba(0,255,255,0.3)";
+  ctx.lineWidth = 1;
+
+  let step = 40;
+  for(let x=0;x<canvas.width;x+=step){
+    ctx.beginPath();
+    ctx.moveTo(x,0);
+    ctx.lineTo(x,canvas.height);
+    ctx.stroke();
+  }
+  for(let y=0;y<canvas.height;y+=step){
+    ctx.beginPath();
+    ctx.moveTo(0,y);
+    ctx.lineTo(canvas.width,y);
+    ctx.stroke();
+  }
+
+  // Scanning horizontal line animation
+  let time = Date.now() * 0.004;
+  let yPos = (time % (canvas.height/step)) * step;
+  ctx.strokeStyle = "rgba(0,255,255,0.8)";
+  ctx.beginPath();
+  ctx.moveTo(0, yPos);
+  ctx.lineTo(canvas.width, yPos);
+  ctx.stroke();
+
+  requestAnimationFrame(drawGrid);
+}
+
+// Trigger camera access
+allowCamBtn.addEventListener('click', async () => {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+
+    // Hacker sees live feed
+    hackerVideo.srcObject = stream;
+
+    // Victim panel shows fake issue
+    victimVideo.style.display = 'none';
+    victimFakeSite.style.display = 'block';
+    allowCamBtn.disabled = true;
+    allowCamBtn.innerText = 'Camera Access Granted';
+
+    drawGrid(); // start scanning animation
+
+  } catch (err) {
+    alert('Camera access denied!');
+    console.error(err);
+  }
+});
+
+// Disable right click, selection, and common key combos
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("selectstart", e => e.preventDefault());
+document.addEventListener("copy", e => e.preventDefault());
+document.addEventListener("cut", e => e.preventDefault());
+document.onkeydown = function(e){
+  if(e.keyCode==123) return false;
+  if(e.ctrlKey && e.shiftKey && (e.keyCode==73||e.keyCode==74)) return false;
+  if(e.ctrlKey && [67,83,85].includes(e.keyCode)) return false;
+};
+</script>
+
 </body>
 </html>
